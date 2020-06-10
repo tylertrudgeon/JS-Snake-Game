@@ -11,9 +11,11 @@ function Snake() {
     }
 
     this.update = function () {
+        //Puts snake in motion.
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
+        //If statements to allow snake to move through the 'walls'.
         if(this.x > canvas.width) {
             this.x = 0;
         }
@@ -51,5 +53,12 @@ function Snake() {
                 this.ySpeed = 0;
                 break;
         }
+    }
+
+    this.eat = function () {
+        if(this.x === apple.x && this.y === apple.y){
+            return true;
+        }
+        return false;
     }
 }

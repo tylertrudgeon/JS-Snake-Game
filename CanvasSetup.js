@@ -12,12 +12,19 @@ let snake;
 //Creating IIFE to set up the snake.
 (function setup() {
     snake = new Snake();
-    snake.draw();
+    apple = new Apple();
+
+    apple.appleLocation();
 
     window.setInterval(() => {
         context.clearRect(0,0, canvas.height, canvas.width);
         snake.update();
+        apple.draw();
         snake.draw();
+
+        if(snake.eat(Apple)) {
+            apple.appleLocation();
+        }
     }, 150);
 }());
 
