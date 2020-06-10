@@ -21,6 +21,7 @@ let snake;
     }, 150);
 }());
 
+//Listening for keystrokes to determine snake direction.
 window.addEventListener('keydown', ((e) => {
     const direction = e.key;
     snake.changeDirection(direction);

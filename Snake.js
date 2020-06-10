@@ -2,7 +2,7 @@
 function Snake() {
     this.x = 0;
     this.y = 0;
-    this.xSpeed = scale * 1;
+    this.xSpeed = scale;
     this.ySpeed = 0;
 
     this.draw = function () {
@@ -13,8 +13,25 @@ function Snake() {
     this.update = function () {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
+
+        if(this.x > canvas.width) {
+            this.x = 0;
+        }
+
+        if(this.x < 0) {
+            this.x = canvas.width;
+        }
+
+        if(this.y > canvas.height) {
+            this.y = 0;
+        }
+
+        if(this.y < 0) {
+            this.y = canvas.height;
+        }
     }
 
+    //Switch case for changeDirection function.
     this.changeDirection = function (direction) {
         switch(direction) {
             case 'ArrowUp':
