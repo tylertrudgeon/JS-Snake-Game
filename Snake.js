@@ -4,14 +4,29 @@ function Snake() {
     this.y = 0;
     this.xSpeed = scale;
     this.ySpeed = 0;
+    this.total = 0;
+    this.tail =[];
 
     this.draw = function () {
         context.fillStyle = "#27ff09";
+
+        //Draws each rectangle of snake tail.
+        for (let i = 0; i < this.tail.length; i++) {
+            context.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
+        }
+        //Draws current position.
         context.fillRect(this.x, this.y, scale, scale);
     }
 
     this.update = function () {
-        //Puts snake in motion.
+        for(let i = 0; i < this.tail.length -1; i++){
+            this.tail[i] = this.tail[i + 1];
+        }
+
+        //Adds a piece to the tail after the loop.
+        this.tail[this.total - 1] = {x: this.x, y: this.y};
+
+        //Puts snake in motion and updates coords.
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
@@ -57,8 +72,10 @@ function Snake() {
 
     this.eat = function () {
         if(this.x === apple.x && this.y === apple.y){
+            this.total++;
             return true;
         }
         return false;
     }
+
 }
